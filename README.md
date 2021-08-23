@@ -1,5 +1,5 @@
 # The_Intern_Academy_Internship
-This repository contains all the work done as a Python Intern in The Intern Academy 's summer internship program.
+This repository contains all my work done as a Python Intern in The Intern Academy's summer internship program.
 
 # Task1:Scheduler_Notifier
 Create a python scheduler notifier :
