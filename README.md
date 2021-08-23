@@ -7,5 +7,5 @@ In this project you need to add tasks with a notification time and at that time,
 
 
 # Task2:Weather_Report
-Get the weather report of the location by the IP address :
+Get the weather report of the location by the IP address :  
 When you get the location of that region, find the weather report of surrounding area and try to predict the weather of that area for next 3 days.
