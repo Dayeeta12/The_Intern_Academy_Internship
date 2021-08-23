@@ -91,7 +91,7 @@ class Alarm:
             self.db_query(query, parameters)
             notification.notify(title="Alarm Set",
                                 message=f"You will be notified on {self.monthDay.get()} at {self.timeField.get()}",
-                                app_icon="F:\\The_Intern_Academy\\project1\\icons\\favicon.ico",
+                                app_icon="F:\\The_Intern_Academy\\Task1_Scheduler_Notifier\\icons\\favicon.ico",
                                 timeout=15)
 
             self.timeField.delete(0, END)
@@ -136,9 +136,9 @@ class Alarm:
                 time.sleep(1)
             if current_time == str(set_time[1]) and current_date == str(set_time[2]):
                 for _ in range(3):
-                    winsound.PlaySound("F:\\The_Intern_Academy\\project1\\musics\\"+ str(set_time[4]) + ".wav", winsound.SND_ASYNC | winsound.SND_ALIAS)
+                    winsound.PlaySound("F:\\The_Intern_Academy\\Task1_Scheduler_Notifier\\musics\\"+ str(set_time[4]) + ".wav", winsound.SND_ASYNC | winsound.SND_ALIAS)
                     notification.notify(title="Reminder", message=f"It's time to {str(set_time[3])}",
-                                        app_icon="F:\\The_Intern_Academy\\project1\\icons\\calender-schedule-time-management.ico",
+                                        app_icon="F:\\The_Intern_Academy\\Task1_Scheduler_Notifier\\icons\\calender-schedule-time-management.ico",
                                         timeout=15)
                     time.sleep(15)
                     winsound.PlaySound(None, winsound.SND_ASYNC)
