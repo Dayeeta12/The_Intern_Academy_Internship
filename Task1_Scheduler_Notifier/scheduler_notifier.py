@@ -15,6 +15,8 @@ class Alarm:
         self.table_view()
         self.all_buttons()
         self.record_list()
+        style = ttk.Style()
+        style.configure("Treeview.Heading", font=(None, 10))
 
     # connect to the database
     def db_query(self, query, parameters=()):
@@ -28,26 +30,26 @@ class Alarm:
 
     # frame for inputs
     def frameWork(self):
-        allFrame = LabelFrame(self.mainWindow, text="Add Task", bg='grey', font='helvetica 10')
+        allFrame = LabelFrame(self.mainWindow, text="Add Task", bg='grey', font='helvetica 15')
         allFrame.grid(row=0, column=0, sticky=E, pady=10)
 
-        Label(allFrame, text='Time(HH:MM):', bg='black', fg='white').grid(row=1, column=1, sticky='ew', pady=2, padx=15)
-        self.timeField = Entry(allFrame, width=27)
+        Label(allFrame, text='Time(HH:MM):', font='helvetica 15',bg='black', fg='white').grid(row=1, column=1, sticky='ew', pady=2, padx=15)
+        self.timeField = Entry(allFrame,font='helvetica 15', width=27)
         self.timeField.grid(row=1, column=2, sticky='ew', padx=5, pady=2)
 
-        Label(allFrame, text='Day-Month(D M)', bg='black', fg='white').grid(row=2, column=1,
+        Label(allFrame, text='Day-Month(D M)', font='helvetica 15', bg='black', fg='white').grid(row=2, column=1,
                                                                             sticky='ew', pady=2, padx=15)
-        self.monthDay = Entry(allFrame, width=27)
+        self.monthDay = Entry(allFrame, font='helvetica 15', width=27)
         self.monthDay.grid(row=2, column=2, sticky='ew', padx=5, pady=2)
 
-        Label(allFrame, text='Task To-Do:', bg='black', fg='white').grid(row=3, column=1, sticky='ew', pady=2, padx=15)
-        self.todoField = Entry(allFrame, width=27)
+        Label(allFrame, text='Task To-Do:',font='helvetica 15', bg='black', fg='white').grid(row=3, column=1, sticky='ew', pady=2, padx=15)
+        self.todoField = Entry(allFrame,font='helvetica 15', width=27)
         self.todoField.grid(row=3, column=2, sticky='ew', padx=5, pady=2)
 
-        Label(allFrame, text='Choose Alarm Tone:', bg='black', fg='white').grid(row=4, column=1,
+        Label(allFrame, text='Choose Alarm Tone:',font='helvetica 15', bg='black', fg='white').grid(row=4, column=1,
                                                                                 sticky='ew', pady=2, padx=15)
         n = StringVar()
-        self.choosen = ttk.Combobox(allFrame, width=27, textvariable=n)
+        self.choosen = ttk.Combobox(allFrame, width=27, font='helvetica 15', textvariable=n)
         self.choosen["values"] = ("bleeping-alarm",
                                   "Annoying-sound1",
                                   "Creepy-clock-chiming1",
@@ -56,7 +58,7 @@ class Alarm:
                                   "Twin-bell")
         self.choosen.grid(row=4, column=2, sticky='ew', padx=5, pady=2)
 
-        Button(allFrame, text="Add Task", command=self.add_task,
+        Button(allFrame, text="Add Task",font='helvetica 15', command=self.add_task,
                bg="black", fg="white").grid(row=5, column=2, sticky=E, padx=5, pady=5)
 
     # all entries in a table
@@ -73,13 +75,13 @@ class Alarm:
         button_frame = Label(mainWindow)
         button_frame.grid(row=0, column=1, sticky=W, padx=10)
 
-        Button(button_frame, text="Delete", command=self.delete_task, bg="red",
+        Button(button_frame, text="Delete", font='helvetica 15', command=self.delete_task, bg="red",
                fg="black").grid(row=0, column=0, sticky='ew', pady=5)
 
-        Button(button_frame, text="SET", command=self.alarm_logic,
+        Button(button_frame, text="SET",font='helvetica 15', command=self.alarm_logic,
                bg="blue", fg="black").grid(row=1, column=0, sticky='ew', pady=5)
 
-        Button(button_frame, text="Cancel", command=mainWindow.quit,
+        Button(button_frame, text="Cancel", font='helvetica 15', command=mainWindow.quit,
                bg="Red", fg="black").grid(row=2, column=0, sticky='ew', pady=5)
 
     # add task on scheduler
@@ -130,7 +132,7 @@ class Alarm:
         current_time = time.strftime("%H:%M")
         current_date = time.strftime("%d %B")
         for set_time in select_entries:
-            print(set_time[1], set_time[2], set_time[3], set_time[4])  # todo:  remove it
+            print(set_time[1], set_time[2], set_time[3], set_time[4])  # todo:  remove it, it's for testing
             while current_time != str(set_time[1]):
                 current_time = time.strftime("%H:%M")
                 time.sleep(1)
@@ -148,6 +150,7 @@ class Alarm:
 
 if __name__ == "__main__":
     mainWindow = Tk()
+    mainWindow.geometry('800x500')
     mainWindow.title("Scheduler with Alarm")
     application = Alarm(mainWindow)
     mainWindow.mainloop()
