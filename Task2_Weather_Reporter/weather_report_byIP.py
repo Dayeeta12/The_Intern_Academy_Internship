@@ -51,29 +51,33 @@ def weather():
     large_view.config(text=large_info)
     small_view.config(text=final_data)
 
-    # next 3 days report
-    all_datas = []
-    for i in range(3):
-        date = data["forecast"]['forecastday'][i]['date']
-        max_temp_C = data["forecast"]['forecastday'][i]['day']['maxtemp_c']
-        max_temp_F = data["forecast"]['forecastday'][i]['day']['maxtemp_f']
-        min_temp_C = data["forecast"]['forecastday'][i]['day']['mintemp_c']
-        min_temp_F = data["forecast"]['forecastday'][i]['day']['mintemp_f']
-        chanceOfRain = data["forecast"]['forecastday'][i]['day']['daily_chance_of_rain']
-        conditions = data["forecast"]['forecastday'][i]['day']['condition']['text']
-        humidity = data["forecast"]['forecastday'][i]['day']['avghumidity']
-        sunrise = data["forecast"]['forecastday'][i]['astro']['sunrise']
-        sunset = data["forecast"]['forecastday'][i]['astro']['sunset']
+    try:
+        # next 3 days report
+        all_datas = []
+        for i in range(3):
+            date = data["forecast"]['forecastday'][i]['date']
+            max_temp_C = data["forecast"]['forecastday'][i]['day']['maxtemp_c']
+            max_temp_F = data["forecast"]['forecastday'][i]['day']['maxtemp_f']
+            min_temp_C = data["forecast"]['forecastday'][i]['day']['mintemp_c']
+            min_temp_F = data["forecast"]['forecastday'][i]['day']['mintemp_f']
+            chanceOfRain = data["forecast"]['forecastday'][i]['day']['daily_chance_of_rain']
+            conditions = data["forecast"]['forecastday'][i]['day']['condition']['text']
+            humidity = data["forecast"]['forecastday'][i]['day']['avghumidity']
+            sunrise = data["forecast"]['forecastday'][i]['astro']['sunrise']
+            sunset = data["forecast"]['forecastday'][i]['astro']['sunset']
 
-        info = f"Date: {date}" + '\n\n' + f"Max Temp: {max_temp_C}°C  |  {max_temp_F}°F" + \
-               "\n" + f"Min Temp: {min_temp_C}°C  |  {min_temp_F}°F" + "\n" + "Condition: " + conditions + \
-               "\n" + f"Chance Of Rain: {chanceOfRain}%" + "\n" + f"Humidity: {humidity}" + \
-               "\n" + f"Sunrise: {sunrise} \t Sunset: {sunset}"
-        all_datas.append(info)
+            info = f"Date: {date}" + '\n\n' + f"Max Temp: {max_temp_C}°C  |  {max_temp_F}°F" + \
+                   "\n" + f"Min Temp: {min_temp_C}°C  |  {min_temp_F}°F" + "\n" + "Condition: " + conditions + \
+                   "\n" + f"Chance Of Rain: {chanceOfRain}%" + "\n" + f"Humidity: {humidity}" + \
+                   "\n" + f"Sunrise: {sunrise} \t Sunset: {sunset}"
+            all_datas.append(info)
 
-    dayOne.config(text=all_datas[0])
-    dayTwo.config(text=all_datas[1])
-    dayThree.config(text=all_datas[2])
+        dayOne.config(text=all_datas[0])
+        dayTwo.config(text=all_datas[1])
+        dayThree.config(text=all_datas[2])
+        
+    except IndexError:
+        Label(mainWindow, text="3 days data is currently unavailable. Please try again later", font=('poppins', 15)).grid(row=2, column=0)
 
 
     #GUI WORK
